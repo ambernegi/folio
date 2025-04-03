@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        background: #000000;
+        padding: 15px 0;
+        position: relative;
+        white-space: nowrap;
+        display: flex;
+        justify-content: center;
+    }
+
+    .marquee-track {
+        display: flex;
+        gap: 60px;
+        animation: scroll 15s linear infinite;
+    }
+
+    .marquee-container:hover .marquee-track {
+        animation-play-state: paused;
+    }
+
+    .marquee-section {
+        text-align: center;
+        min-width: 300px;
+    }
+
+    .marquee-section h3 {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fffefe;
+        margin-bottom: 10px;
+        text-transform: none;
+    }
+
+    .skills {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .skill {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .skill img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        filter: grayscale(50%);
+        transition: filter 0.3s ease-in-out, transform 0.2s;
+    }
+
+    .skill img:hover {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+
+    .skill span {
+        font-size: 0.85rem;
+        color: #ffffff;
+        margin-top: 5px;
+    }
+
+    .separator {
+        width: 2px;
+        height: 60px;
+        background: #ffffff;
+        align-self: center;
+    }
+   
+  
+
+
+    @keyframes scroll {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+    
+ 
+    .marquee-container:hover .marquee-content {
+        animation-play-state: paused;
+    }
+
+      
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
+
+
+    /* Modal Overlay - Cinematic Dark Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, #0d0d0d 20%, #000000 100%);
+    backdrop-filter: blur(12px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Show modal animation */
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Modal Content - 3D Floating Card Effect */
+.modal-content {
+    background: linear-gradient(to bottom, #141414, #1a1a1a);
+    border-radius: 12px;
+    width: 55%;
+    max-height: 85%;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.85) translateY(-20px);
+    transition: transform 0.5s ease-in-out, box-shadow 0.4s ease-in-out;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.9), 
+                0px 5px 15px rgba(255, 255, 255, 0.05); /* Soft light reflection */
+}
+
+/* Open Effect - Expands and Lifts */
+.modal.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* Ultra-Sleek Transparent Scrollbar */
+.modal-content::-webkit-scrollbar {
+    width: 6px; /* Slim and elegant */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1); /* Barely visible for a premium feel */
+    border-radius: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.959); /* Subtle highlight on hover */
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent; /* Completely invisible */
+}
+
+/* Back Button - Outside the Modal */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 0, 0, 0.8);
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    display: flex; /* Ensure it's visible */
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+/* Ensure visibility when modal is active */
+.modal.active ~ .back-btn {
+    display: flex;
+}
+
+/* Back Button Icon */
+.back-btn img {
+    width: 24px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Ensures visibility */
+}
+
+/* Back Button Hover */
+.back-btn:hover {
+    background: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+}
+
+
+
+
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Navbar -->
+    <header class="flex justify-between items-center p-4 bg-black border-b border-gray-800">
+        <h1 class="text-3xl font-bold text-red-600">Portfolio</h1>
+        <nav class="space-x-4">
+            <a href="#about" class="hover:text-red-500">About</a>
+            <a href="#projects" class="hover:text-red-500">Projects</a>
+            <a href="#contact" class="hover:text-red-500">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-t from-black to-gray-900">
+        <h2 class="text-5xl font-extrabold text-white fade-in-up">Hi, I'm [Your Name]</h2>
+        <p class="text-xl text-gray-400 mt-4 fade-in-up hover-red" style="animation-delay: 0.5s;">
+            <span>Product Manager</span> | <span>Senior Software Engineer</span>
+        </p>
+        <div class="mt-6 flex space-x-4 fade-in-up" style="animation-delay: 1s;">
+            <a href="#projects" class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full text-white font-semibold">Explore My Work</a>
+            <a href="#contact" class="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-full text-white font-semibold">Get in Touch</a>
+        </div>
+        
+        
+    </section>
+
+    
+
+    <!-- Right Timeline -->
+    <div class="w-1/2">
+        <h3 class="text-2xl font-bold text-red-500 mb-4">Education</h3>
+        <div class="border-l-2 border-gray-600 pl-4">
+            <div class="mb-4">
+                <p class="text-lg font-semibold">2019 - 2021</p>
+                <p class="text-gray-400">National Institute of Technology Silchar - Master's in Electrical Engineering</p>
+            </div>
+            <div class="mb-4">
+                <p class="text-lg font-semibold">2012 - 2016</p>
+                <p class="text-gray-400">Indraprastha University - Bachelor's in Electrical and Electronics Engineering</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Moving Skills Banner -->
+    <section class="marquee-container">
+        <div class="marquee-track">
+            <div class="marquee-section">
+                <h3>Programming</h3>
+                <div class="skills">
+                    <div class="skill"><img src="./icons/python.png" alt="Python"><span>Python</span></div>
+                    <div class="skill"><img src="./icons/js.png" alt="JavaScript"><span>JavaScript</span></div>
+                    <div class="skill"><img src="./icons/react.png" alt="React"><span>React</span></div>
+                    <div class="skill"><img src="./icons/sql.png" alt="SQL"><span>SQL</span></div>
+                    <div class="skill"><img src="./icons/xml.png" alt="XML"><span>XML</span></div>
+                    <div class="skill"><img src="./icons/json.png" alt="JSON"><span>JSON</span></div>
+                </div>
+            </div>
+    
+            <div class="separator"></div>
+    
+            <div class="marquee-section">
+                <h3>Project Management</h3>
+                <div class="skills">
+                    <div class="skill"><img src="./icons/jenkins.png" alt="Jenkins"><span>Jenkins</span></div>
+                    <div class="skill"><img src="./icons/docker.png" alt="Docker"><span>Docker</span></div>
+                    <div class="skill"><img src="./icons/firebase.png" alt="Firebase"><span>Firebase</span></div>
+                </div>
+            </div>
+    
+            <div class="separator"></div>
+    
+            <div class="marquee-section">
+                <h3>Design</h3>
+                <div class="skills">
+                    <div class="skill"><img src="./icons/adobe.png" alt="Adobe"><span>Adobe</span></div>
+                    <div class="skill"><img src="./icons/figma.png" alt="Figma"><span>Figma</span></div>
+                </div>
+            </div>
+            <div class="separator"></div>
+    
+            <div class="marquee-section">
+                <h3>Project Management</h3>
+                <div class="skills">
+                    <div class="skill"><img src="./icons/jenkins.png" alt="Jenkins"><span>Jenkins</span></div>
+                    <div class="skill"><img src="./icons/docker.png" alt="Docker"><span>Docker</span></div>
+                    <div class="skill"><img src="./icons/firebase.png" alt="Firebase"><span>Firebase</span></div>
+                </div>
+            </div>
+            <div class="separator"></div>
+    
+            <div class="marquee-section">
+                <h3>Project Management</h3>
+                <div class="skills">
+                    <div class="skill"><img src="./icons/jenkins.png" alt="Jenkins"><span>Jenkins</span></div>
+                    <div class="skill"><img src="./icons/docker.png" alt="Docker"><span>Docker</span></div>
+                    <div class="skill"><img src="./icons/firebase.png" alt="Firebase"><span>Firebase</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="p-10 bg-gray-900">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Featured Projects</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 p-4 rounded-lg hover:scale-105 transition-transform">
+                <h3 class="text-xl font-bold text-red-500">AI-Powered Image Enhancement</h3>
+                <p class="mt-2 text-gray-400">Built an ML-based image enhancement product to enhance the visual quality of images across documentation, software tools, and the website.</strong></p>
+                <button id="openModalBtn1" class="mt-2 inline-block text-red-400 hover:underline">View Case Study</button>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg hover:scale-105 transition-transform">
+                <h3 class="text-xl font-bold text-red-500">AI-RAG Recommendation Engine</h3>
+                <p class="mt-2 text-gray-400">Designed an automated feedback loop for product insights.</p>
+                <button id="openModalBtn2" class="mt-2 inline-block text-red-400 hover:underline">View Case Study</button>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg hover:scale-105 transition-transform">
+                <h3 class="text-xl font-bold text-red-500">Efficiency Dashboard</h3>
+                <p class="mt-2 text-gray-400">Launched an internal dashboard to track team efficiency KPIs.</p>
+                <button id="openModalBtn3" class="mt-2 inline-block text-red-400 hover:underline">View Case Study</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Case Study 1 -->
+    <!-- Back Button (Initially Hidden) -->
+<!-- Common Back Button -->
+<button id="backBtn" class="back-btn" style="display: none;">
+    <img src="./back.png">
+</button>
+
+<!-- Modal for Case Study 1 -->
+<div id="caseStudyModal1" class="modal">
+    <div class="modal-content">
+        <iframe src="casestudy1.html" style="width: 100%; height: 80vh; border: none;"></iframe>
+    </div>
+</div>
+
+<!-- Modal for Case Study 2 -->
+<div id="caseStudyModal2" class="modal">
+    <div class="modal-content">
+        <iframe src="casestudy2.html" style="width: 100%; height: 80vh; border: none;"></iframe>
+    </div>
+</div>
+
+<!-- Modal for Case Study 3 -->
+<div id="caseStudyModal3" class="modal">
+    <div class="modal-content">
+        <iframe src="casestudy3.html" style="width: 100%; height: 80vh; border: none;"></iframe>
+    </div>
+</div>
+
+
+    <!-- Resume Download -->
+    <section class="p-10 text-center bg-black">
+        <a href="resume.pdf" download class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full text-white font-semibold">Download Resume</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-black border-t border-gray-800 text-gray-400">
+        <p>&copy; 2025 Your Name | <a href="#" class="text-red-400">GitHub</a> | <a href="#" class="text-red-400">LinkedIn</a></p>
+    </footer>
+
+    <script>
+        // Get the common back button
+        const backBtn = document.getElementById("backBtn");
+    
+        // Get all modals
+        const modals = {
+            caseStudyModal1: document.getElementById("caseStudyModal1"),
+            caseStudyModal2: document.getElementById("caseStudyModal2"),
+            caseStudyModal3: document.getElementById("caseStudyModal3")
+        };
+    
+        // Get all open buttons
+        const openModalBtns = {
+            caseStudyModal1: document.getElementById("openModalBtn1"),
+            caseStudyModal2: document.getElementById("openModalBtn2"),
+            caseStudyModal3: document.getElementById("openModalBtn3")
+        };
+    
+        let activeModal = null; // Track which modal is open
+    
+        // Open modal function
+        Object.keys(openModalBtns).forEach((modalId) => {
+            openModalBtns[modalId].addEventListener("click", () => {
+                modals[modalId].classList.add("active");
+                backBtn.style.display = "block"; // Show back button
+                activeModal = modals[modalId]; // Set the active modal
+            });
+        });
+    
+        // Close modal function (common for all)
+        backBtn.addEventListener("click", () => {
+            if (activeModal) {
+                activeModal.classList.remove("active");
+                activeModal = null;
+            }
+            backBtn.style.display = "none"; // Hide back button
+        });
+    
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            if (activeModal && event.target === activeModal) {
+                activeModal.classList.remove("active");
+                activeModal = null;
+                backBtn.style.display = "none"; // Hide back button
+            }
+        };
+    </script>
+    
+    
+</body>
+</html>
