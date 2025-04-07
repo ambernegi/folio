@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Manager Portfolio</title>
+    <title>Amber's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
     <style>
@@ -110,8 +110,6 @@
       
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
 
-
-    /* Modal Overlay - Cinematic Dark Background */
 .modal {
     position: fixed;
     top: 0;
@@ -128,13 +126,11 @@
     transition: opacity 0.4s ease-in-out;
 }
 
-/* Show modal animation */
 .modal.active {
     display: flex;
     opacity: 1;
 }
 
-/* Modal Content - 3D Floating Card Effect */
 .modal-content {
     background: linear-gradient(to bottom, #141414, #1a1a1a);
     border-radius: 12px;
@@ -145,34 +141,31 @@
     transform: scale(0.85) translateY(-20px);
     transition: transform 0.5s ease-in-out, box-shadow 0.4s ease-in-out;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.9), 
-                0px 5px 15px rgba(255, 255, 255, 0.05); /* Soft light reflection */
+                0px 5px 15px rgba(255, 255, 255, 0.05); 
 }
 
-/* Open Effect - Expands and Lifts */
 .modal.active .modal-content {
     transform: scale(1) translateY(0);
 }
 
-/* Ultra-Sleek Transparent Scrollbar */
 .modal-content::-webkit-scrollbar {
-    width: 6px; /* Slim and elegant */
+    width: 6px;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1); /* Barely visible for a premium feel */
+    background: rgba(255, 255, 255, 0.1); 
     border-radius: 10px;
     transition: background 0.3s ease-in-out;
 }
 
 .modal-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.959); /* Subtle highlight on hover */
+    background: rgba(255, 255, 255, 0.959); 
 }
 
 .modal-content::-webkit-scrollbar-track {
-    background: transparent; /* Completely invisible */
+    background: transparent; 
 }
 
-/* Back Button - Outside the Modal */
 .back-btn {
     position: fixed;
     top: 20px;
@@ -189,24 +182,78 @@
     z-index: 1100;
 }
 
-/* Ensure visibility when modal is active */
 .modal.active ~ .back-btn {
     display: flex;
 }
 
-/* Back Button Icon */
 .back-btn img {
     width: 24px;
     height: auto;
     filter: brightness(0) invert(1); /* Ensures visibility */
 }
 
-/* Back Button Hover */
+
 .back-btn:hover {
     background: rgba(255, 0, 0, 1);
     transform: scale(1.1);
 }
 
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; 
+    }
+    h2 {
+        font-size: 3rem; 
+    }
+    h3 {
+        font-size: 0.9rem; 
+    }
+    p {
+        font-size: 0.85rem; 
+    }
+    .text-xl {
+        font-size: 1rem; 
+    }
+    .px-6 {
+        padding-left: 1rem; 
+        padding-right: 1rem;
+    }
+    .py-3 {
+        padding-top: 0.75rem; 
+        padding-bottom: 0.75rem;
+    }
+    .skill img {
+        width: 40px; 
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; 
+    }
+    h2 {
+        font-size: 2.5rem; 
+    }
+    h3 {
+        font-size: 0.8rem; 
+    }
+    p {
+        font-size: 0.75rem; 
+    }
+    .text-xl {
+        font-size: 0.9rem; 
+    }
+    .px-6 {
+        padding-left: 0.75rem; 
+        padding-right: 0.75rem;
+    }
+    .py-3 {
+        padding-top: 0.5rem; 
+        padding-bottom: 0.5rem;
+    }
+}
 
 
 
@@ -214,7 +261,6 @@
 </head>
 <body class="bg-black text-white">
 
-    <!-- Navbar -->
     <header class="flex justify-between items-center p-4 bg-black border-b border-gray-800">
         <h1 class="text-3xl font-bold text-red-600">Portfolio</h1>
         <nav class="space-x-4">
@@ -224,9 +270,8 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-t from-black to-gray-900">
-        <h2 class="text-5xl font-extrabold text-white fade-in-up">Hi, I'm [Your Name]</h2>
+        <h2 class="text-5xl font-extrabold text-white fade-in-up">Hi, I'm Amber Negi</h2>
         <p class="text-xl text-gray-400 mt-4 fade-in-up hover-red" style="animation-delay: 0.5s;">
             <span>Product Manager</span> | <span>Senior Software Engineer</span>
         </p>
@@ -238,22 +283,18 @@
         
     </section>
 
-    
-<!-- Timeline Section with Skill Tree -->
+
 <section class="flex flex-col md:flex-row justify-between gap-12 px-4 md:px-8 py-12 bg-[#0f0f0f] text-white">
 
-    <!-- Left Timeline - Education -->
     <div class="w-full md:w-1/2 text-left relative">
         <h3 id="education-title" class="text-3xl font-bold text-red-500 mb-6 tracking-wide">Education</h3>
         <div class="relative border-l-4 border-gray-700 pl-6">
 
-            <!-- NIT Entry -->
             <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
                 <p class="text-lg font-semibold text-white" id="nit-entry">2019 - 2021</p>
                 <p class="text-gray-300">National Institute of Technology Silchar</p>
                 <p class="text-sm text-gray-400 italic">Master's in Electrical Engineering</p>
 
-                <!-- XP Bar -->
                 <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div class="bg-red-500 h-2 rounded w-[81%]"></div>
                     <!-- Tooltip for CGPA -->
@@ -263,7 +304,6 @@
                 </div>
             </div>
 
-            <!-- Bachelor's Entry -->
             <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
                 <p class="text-lg font-semibold text-white" id="bachelors-entry">2015 - 2019</p>
                 <p class="text-gray-300">XYZ University</p>
@@ -281,7 +321,6 @@
         </div>
     </div>
 
-    <!-- Right Timeline - Professional Experience with Skill Tree -->
 <div class="w-full md:w-1/2 text-left relative">
     <h3 id="experience-title" class="text-3xl font-bold text-red-500 mb-6 tracking-wide">Professional Experience</h3>
     <div class="relative border-l-4 border-gray-700 pl-6">
@@ -302,13 +341,11 @@
             </div>
         </div>
 
-        <!-- Entry 2: June 2023 - November 2024 -->
         <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
             <p class="text-lg font-semibold text-white">June 2023 - November 2024</p>
             <p class="text-gray-300">Senior Software Engineer</p>
             <p class="text-sm text-gray-400 italic">Microchip Technology</p>
             
-            <!-- XP Bar -->
             <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div class="bg-red-500 h-2 rounded w-[70%]"></div> 
                 <span class="absolute top-[-30px] left-[60%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
@@ -339,66 +376,67 @@
 
 </section>
 
-  
-    <!-- Moving Skills Banner -->
     <section class="marquee-container">
         <div class="marquee-track">
+            
+      
             <div class="marquee-section">
-                <h3>Programming</h3>
+                <h3>Project Management & Collaboration</h3>
                 <div class="skills">
-                    <div class="skill"><img src="./images/python.png" alt="Python"><span>Python</span></div>
-                    <div class="skill"><img src="./images/js.png" alt="JavaScript"><span>JavaScript</span></div>
-                    <div class="skill"><img src="./images/react.png" alt="React"><span>React</span></div>
-                    <div class="skill"><img src="./images/sql.png" alt="SQL"><span>SQL</span></div>
-                    <div class="skill"><img src="./images/xml.png" alt="XML"><span>XML</span></div>
-                    <div class="skill"><img src="./images/json.png" alt="JSON"><span>JSON</span></div>
+                    <div class="skill"><img src="./images/jira.svg" alt="JIRA"><span>JIRA</span></div>
+                    <div class="skill"><img src="./images/confluence.png" alt="Confluence"><span>Confluence</span></div>
+                    <div class="skill"><img src="./images/bb.png" alt="Bitbucket"><span>Bitbucket</span></div>
+                    <div class="skill"><img src="./images/git.png" alt="GitHub"><span>GitHub</span></div>
+                    <div class="skill"><img src="./images/share.png" alt="Bitbucket"><span>Sharepoint</span></div>
                 </div>
             </div>
     
             <div class="separator"></div>
     
             <div class="marquee-section">
-                <h3>Project Management</h3>
+                <h3>Design & A/B Testing</h3>
                 <div class="skills">
-                    <div class="skill"><img src="./images/jenkins.png" alt="Jenkins"><span>Jenkins</span></div>
-                    <div class="skill"><img src="./images/docker.png" alt="Docker"><span>Docker</span></div>
-                    <div class="skill"><img src="./images/firebase.png" alt="Firebase"><span>Firebase</span></div>
-                </div>
-            </div>
-    
-            <div class="separator"></div>
-    
-            <div class="marquee-section">
-                <h3>Design</h3>
-                <div class="skills">
-                    <div class="skill"><img src="./images/adobe.png" alt="Adobe"><span>Adobe</span></div>
+                    <div class="skill"><img src="./images/firebase.png" alt="Adobe"><span>Firebase</span></div>
                     <div class="skill"><img src="./images/figma.png" alt="Figma"><span>Figma</span></div>
                 </div>
             </div>
             <div class="separator"></div>
     
             <div class="marquee-section">
-                <h3>Project Management</h3>
+                <h3>Analytics & Visualization</h3>
                 <div class="skills">
-                    <div class="skill"><img src="./images/jenkins.png" alt="Jenkins"><span>Jenkins</span></div>
-                    <div class="skill"><img src="./images/docker.png" alt="Docker"><span>Docker</span></div>
-                    <div class="skill"><img src="./images/firebase.png" alt="Firebase"><span>Firebase</span></div>
+                    <div class="skill"><img src="./images/power.png" alt="Power BI"><span>Power BI</span></div>
+                    <div class="skill"><img src="./images/tab.png" alt="Tableau"><span>Tableau</span></div>
+                    <div class="skill"><img src="./images/adobe.png" alt="Firebase"><span>Adobe Analytics</span></div>
                 </div>
             </div>
             <div class="separator"></div>
     
             <div class="marquee-section">
-                <h3>Project Management</h3>
+                <h3>Programming & Prototyping</h3>
                 <div class="skills">
+                    <div class="skill"><img src="./images/py.png" alt="Python"><span>Python</span></div>
+                    <div class="skill"><img src="./images/js.png" alt="JavaScript"><span>JavaScript</span></div>
+                    <div class="skill"><img src="./images/react.png" alt="React"><span>React</span></div>
+                    <div class="skill"><img src="./images/sql.png" alt="SQL"><span>SQL</span></div>
+                    <div class="skill"><img src="./images/xml.png" alt="XML"><span>XML</span></div>
                     <div class="skill"><img src="./images/jenkins.png" alt="Jenkins"><span>Jenkins</span></div>
-                    <div class="skill"><img src="./images/docker.png" alt="Docker"><span>Docker</span></div>
-                    <div class="skill"><img src="./images/firebase.png" alt="Firebase"><span>Firebase</span></div>
+                    <div class="skill"><img src="./images/apache.png" alt="Apache Subversion"><span>Apache Subversion</span></div>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <div class="marquee-section">
+                <h3>Content Management System</h3>
+                <div class="skills">
+                    <div class="skill"><img src="./images/aws.png" alt="AWS"><span>AWS</span></div>
+                    <div class="skill"><img src="./images/aem.png" alt="Adobe Experience Manager"><span>Adobe Experience Manager</span></div>
+                    <div class="skill"><img src="./images/opentxt.png" alt="Adobe Experience Manager"><span>Open Text</span></div>
+                 
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="p-10 bg-gray-900">
         <h2 class="text-3xl font-bold text-white mb-6 text-center">Featured Projects</h2>
         <div class="grid md:grid-cols-3 gap-6">
@@ -413,54 +451,48 @@
                 <button id="openModalBtn2" class="mt-2 inline-block text-red-400 hover:underline">View Case Study</button>
             </div>
             <div class="bg-gray-800 p-4 rounded-lg hover:scale-105 transition-transform">
-                <h3 class="text-xl font-bold text-red-500">Efficiency Dashboard</h3>
-                <p class="mt-2 text-gray-400">Launched an internal dashboard to track team efficiency KPIs.</p>
-                <button id="openModalBtn3" class="mt-2 inline-block text-red-400 hover:underline">View Case Study</button>
+                <h3 class="text-xl font-bold text-red-500">Other Projects</h3>
+                <p class="mt-2 text-gray-400">Lists other projects</p>
+                <button id="openModalBtn3" class="mt-2 inline-block text-red-400 hover:underline">View</button>
             </div>
         </div>
     </section>
 
-    <!-- Modal for Case Study 1 -->
     <!-- Back Button (Initially Hidden) -->
 <!-- Common Back Button -->
 <button id="backBtn" class="back-btn" style="display: none;">
     <img src="./back.png">
 </button>
 
-<!-- Modal for Case Study 1 -->
 <div id="caseStudyModal1" class="modal">
     <div class="modal-content">
         <iframe src="casestudy1.html" style="width: 100%; height: 80vh; border: none;"></iframe>
     </div>
 </div>
 
-<!-- Modal for Case Study 2 -->
 <div id="caseStudyModal2" class="modal">
     <div class="modal-content">
         <iframe src="casestudy2.html" style="width: 100%; height: 80vh; border: none;"></iframe>
     </div>
 </div>
 
-<!-- Modal for Case Study 3 -->
 <div id="caseStudyModal3" class="modal">
     <div class="modal-content">
         <iframe src="casestudy3.html" style="width: 100%; height: 80vh; border: none;"></iframe>
     </div>
 </div>
 
-
-    <!-- Resume Download -->
     <section class="p-10 text-center bg-black">
         <a href="resume.pdf" download class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full text-white font-semibold">Download Resume</a>
     </section>
 
-    <!-- Footer -->
+    
     <footer class="p-4 text-center bg-black border-t border-gray-800 text-gray-400">
         <p>&copy; 2025 Your Name | <a href="#" class="text-red-400">GitHub</a> | <a href="#" class="text-red-400">LinkedIn</a></p>
     </footer>
 
     <script>
-        // Get the common back button
+        
         const backBtn = document.getElementById("backBtn");
     
         const modals = {
