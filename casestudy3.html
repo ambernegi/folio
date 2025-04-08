@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Image Processing</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #141414;
+      color: #e5e5e5;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: rgba(20, 20, 20, 0.9);
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+    }
+
+    h1, h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    .interactive-section {
+      display: flex;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .team-card {
+      flex: 1;
+      background: #1f1f1f;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      height: 180px;
+    }
+
+    .team-card:hover {
+      border-color: #e50914;
+      background: #2a2a2a;
+      height: 300px;
+    }
+
+    .team-card h3 {
+      color: #e50914;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .team-card p {
+      font-size: 16px;
+      color: #ccc;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .team-card .more-info {
+      opacity: 0;
+      transform: translateY(20px);
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .team-card:hover .more-info {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 200px;
+      margin-top: 15px;
+    }
+    canvas {
+  width: 100% !important;
+  height: 400px !important;
+
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.container {
+  overflow: visible;
+}
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Other Projects</h1>
+
+    <h2>Cross-Functional Collaboration</h2>
+    <div class="interactive-section">
+
+      <div class="team-card">
+        <h3>Marketing</h3>
+        <p>GTM Strategy <br> PCNs <br>Product Discoverability</p>
+        <div class="more-info">
+          <p>Partnered with the marketing team to define positioning and messaging. Led launch collateral creation and aligned with global timelines for smoother GTM delivery.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <h3>Tech Support</h3>
+        <p>Feedback Systems <br> Chatbots</p>
+        <div class="more-info">
+          <p>Created scalable systems to analyze image clarity complaints. Resulted in faster resolution loops and data-driven product enhancements.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <h3>Engineering</h3>
+        <p>Productivity Solutions <br> Data <br> AI/ML Solutions</p>
+        <div class="more-info">
+          <p>Designed API-first schemas and infrastructure for GPU image enhancement. Integrated seamlessly with CI/CD and analytics dashboards.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Skill Map</h2>
+    <canvas id="skillRadar"></canvas>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ctx = document.getElementById('skillRadar').getContext('2d');
+  
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Product Discovery and Strategy', 'Product Analytics', 'Cross-functional leadership', 'Automation and Innovation', 'UX & Content', 'AI/ML Integration'],
+          datasets: [{
+            label: 'Proficiency',
+            data: [8, 8, 8, 10, 9, 8],
+            backgroundColor: 'rgba(229, 9, 20, 0.2)',
+            borderColor: '#e50914',
+            borderWidth: 2,
+            pointBackgroundColor: '#e50914',
+            pointHoverRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            r: {
+              beginAtZero: true,
+              min: 0,
+              max: 10,
+              ticks: {
+                stepSize: 1,
+                backdropColor: 'transparent',
+                color: '#999'
+              },
+              angleLines: {
+                color: '#333'
+              },
+              grid: {
+                color: '#444'
+              },
+              pointLabels: {
+                color: '#fff',
+                font: {
+                  size: 14
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#fff'
+              }
+            },
+            tooltip: {
+              backgroundColor: '#e50914',
+              titleColor: '#fff',
+              bodyColor: '#fff'
+            }
+          }
+        }
+      });
+    });
+  </script>
+  
+  <div class="container">
+    <h2>Exhaustive Skills</h2>
+    
+        <ul>
+            <li><strong> Project Management and Collaboration</strong>: JIRA, Confluence, Github, Bitbucket, Bugzilla, SharePoint, and OpenText</li>
+            <li><strong> Wireframing, A/B Testing, and Analytics</strong>: Figma, Firebase, and Adobe Analytics</li>
+            <li><strong> Data Visualization</strong>: Tableau, and PowerBI</li>
+            <li><strong> AI/ML and Data </strong>: LLMs, Finetuning,  AI agents, RAG, GraphRAG, Decision Trees, Predictive Models, Image detection and processing (CNNs), Data pipelines (ETL), and Data parsing</li>
+            <li><strong> Languages</strong>: C, Python, SQL (MySQL), JavaScript, Tcl, HTML, CSS, JSON, XML, DITA, XPath, RST, Markdown, and UML</li>
+            <li><strong> Integration and Testing</strong>: Jenkins, Artifactory, Apache Subversion, and Squish </li>
+            <li><strong> Content Management Systems</strong>: Adobe Experience Manager (AEM), Amazon Web Services (AWS), and RWS Tridion Docs </li>
+            <li><strong>Soft Skills</strong>: : Agile (Scrum, Kanban), Waterfall, Structured Problem Solving, Stakeholder Management, Product/Software/Document Development Life Cycle (PDLC/SDLC/DDLC), Cross-functional team leadership, Strategic Planning and Execution, and Data-driven Decision Making </li>
+           
+        </ul>
+  </div>
+  
+  
+</body>
+</html>
