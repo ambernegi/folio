@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amber's Portfolio</title>
+    <title>Product Manager Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
     <style>
@@ -110,6 +110,7 @@
       
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap');
 
+
 .modal {
     position: fixed;
     top: 0;
@@ -149,7 +150,7 @@
 }
 
 .modal-content::-webkit-scrollbar {
-    width: 6px;
+    width: 6px; 
 }
 
 .modal-content::-webkit-scrollbar-thumb {
@@ -176,7 +177,7 @@
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.2s;
-    display: flex; /* Ensure it's visible */
+    display: flex; 
     justify-content: center;
     align-items: center;
     z-index: 1100;
@@ -189,15 +190,13 @@
 .back-btn img {
     width: 24px;
     height: auto;
-    filter: brightness(0) invert(1); /* Ensures visibility */
+    filter: brightness(0) invert(1); 
 }
-
 
 .back-btn:hover {
     background: rgba(255, 0, 0, 1);
     transform: scale(1.1);
 }
-
 
 @media (max-width: 768px) {
     h1 {
@@ -261,6 +260,7 @@
 </head>
 <body class="bg-black text-white">
 
+
     <header class="flex justify-between items-center p-4 bg-black border-b border-gray-800">
         <h1 class="text-3xl font-bold text-red-600">Portfolio</h1>
         <nav class="space-x-4">
@@ -280,102 +280,12 @@
             <a href="#contact" class="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-full text-white font-semibold">Get in Touch</a>
         </div>
         
-        
     </section>
 
 
-<section class="flex flex-col md:flex-row justify-between gap-12 px-4 md:px-8 py-12 bg-[#0f0f0f] text-white">
-
-    <div class="w-full md:w-1/2 text-left relative">
-        <h3 id="education-title" class="text-3xl font-bold text-red-500 mb-6 tracking-wide">Education</h3>
-        <div class="relative border-l-4 border-gray-700 pl-6">
-
-            <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
-                <p class="text-lg font-semibold text-white" id="nit-entry">2019 - 2021</p>
-                <p class="text-gray-300">National Institute of Technology Silchar</p>
-                <p class="text-sm text-gray-400 italic">Master's in Electrical Engineering</p>
-
-                <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div class="bg-red-500 h-2 rounded w-[81%]"></div>
-                    <!-- Tooltip for CGPA -->
-                    <span class="absolute top-[-30px] left-[81%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                        8.1 CGPA
-                    </span>
-                </div>
-            </div>
-
-            <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
-                <p class="text-lg font-semibold text-white" id="bachelors-entry">2015 - 2019</p>
-                <p class="text-gray-300">XYZ University</p>
-                <p class="text-sm text-gray-400 italic">Bachelor's in Electrical and Electronics Engineering</p>
-
-                <!-- XP Bar -->
-                <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div class="bg-red-500 h-2 rounded w-[73.5%]"></div>
-                    <!-- Tooltip for CGPA -->
-                    <span class="absolute top-[-30px] left-[73.5%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                        7.35 CGPA
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<div class="w-full md:w-1/2 text-left relative">
-    <h3 id="experience-title" class="text-3xl font-bold text-red-500 mb-6 tracking-wide">Professional Experience</h3>
-    <div class="relative border-l-4 border-gray-700 pl-6">
-
-        
-        <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
-            <p class="text-lg font-semibold text-white">December 2024 - Present</p>
-            <p class="text-gray-300">Product Manager, Software Design (Senior Engineer-I)</p>
-            <p class="text-sm text-gray-400 italic">Microchip Technology</p>
-            
-            <!-- XP Bar -->
-            <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="bg-red-500 h-2 rounded w-[50%]"></div> 
-                
-                <span class="absolute top-[-30px] left-[33%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                    5 months
-                </span>
-            </div>
-        </div>
-
-        <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
-            <p class="text-lg font-semibold text-white">June 2023 - November 2024</p>
-            <p class="text-gray-300">Senior Software Engineer</p>
-            <p class="text-sm text-gray-400 italic">Microchip Technology</p>
-            
-            <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="bg-red-500 h-2 rounded w-[70%]"></div> 
-                <span class="absolute top-[-30px] left-[60%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                    1 year, 5 months
-                </span>
-            </div>
-        </div>
-
-        <!-- Entry 3: July 2022 - May 2023 -->
-        <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
-            <p class="text-lg font-semibold text-white">July 2021 - May 2023</p>
-            <p class="text-gray-300">Engineer-II</p>
-            <p class="text-sm text-gray-400 italic">Microchip Technology</p>
-            
-            <!-- XP Bar -->
-            <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="bg-red-500 h-2 rounded w-[90%]"></div> <!-- Adjust width as needed -->
-                <!-- Tooltip for duration -->
-                <span class="absolute top-[-30px] left-[50%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                    1 years, 10 months
-                </span>
-            </div>
-        </div>
-
-    </div>
-    
-</div>
-
 </section>
 
+  
     <section class="marquee-container">
         <div class="marquee-track">
             
@@ -458,8 +368,6 @@
         </div>
     </section>
 
-    <!-- Back Button (Initially Hidden) -->
-<!-- Common Back Button -->
 <button id="backBtn" class="back-btn" style="display: none;">
     <img src="./back.png">
 </button>
@@ -469,6 +377,7 @@
         <iframe src="casestudy1.html" style="width: 100%; height: 80vh; border: none;"></iframe>
     </div>
 </div>
+
 
 <div id="caseStudyModal2" class="modal">
     <div class="modal-content">
@@ -482,17 +391,102 @@
     </div>
 </div>
 
+<section class="flex flex-col md:flex-row justify-between gap-12 px-4 md:px-8 py-12 bg-[#0f0f0f] text-white">
+
+    <div class="w-full md:w-1/2 text-left relative">
+        <h3 id="education-title" class="text-3xl font-bold text-red-500 mb-6 tracking-wide">Education</h3>
+        <div class="relative border-l-4 border-gray-700 pl-6">
+
+            <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
+                <p class="text-lg font-semibold text-white" id="nit-entry">2019 - 2021</p>
+                <p class="text-gray-300">National Institute of Technology Silchar</p>
+                <p class="text-sm text-gray-400 italic">Master's in Electrical Engineering</p>
+
+                <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="bg-red-500 h-2 rounded w-[81%]"></div>
+
+                    <span class="absolute top-[-30px] left-[81%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        8.1 CGPA
+                    </span>
+                </div>
+            </div>
+
+            <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
+                <p class="text-lg font-semibold text-white" id="bachelors-entry">2015 - 2019</p>
+                <p class="text-gray-300">XYZ University</p>
+                <p class="text-sm text-gray-400 italic">Bachelor's in Electrical and Electronics Engineering</p>
+
+                <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="bg-red-500 h-2 rounded w-[73.5%]"></div>
+    
+                    <span class="absolute top-[-30px] left-[73.5%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        7.35 CGPA
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="w-full md:w-1/2 text-left relative">
+    <h3 id="experience-title" class="text-3xl font-bold text-red-500 mb-6 tracking-wide">Professional Experience</h3>
+    <div class="relative border-l-4 border-gray-700 pl-6">
+
+        
+        <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
+            <p class="text-lg font-semibold text-white">December 2024 - Present</p>
+            <p class="text-gray-300">Product Manager, Software Design (Senior Engineer-I)</p>
+            <p class="text-sm text-gray-400 italic">Microchip Technology</p>
+            
+            <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="bg-red-500 h-2 rounded w-[50%]"></div> 
+                
+                <span class="absolute top-[-30px] left-[33%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    5 months
+                </span>
+            </div>
+        </div>
+
+        <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
+            <p class="text-lg font-semibold text-white">June 2023 - November 2024</p>
+            <p class="text-gray-300">Senior Software Engineer</p>
+            <p class="text-sm text-gray-400 italic">Microchip Technology</p>
+            
+            <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="bg-red-500 h-2 rounded w-[70%]"></div> 
+                <span class="absolute top-[-30px] left-[60%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    1 year, 5 months
+                </span>
+            </div>
+        </div>
+
+        <div data-aos="zoom-in" data-aos-delay="200" class="mb-10 relative group">
+            <p class="text-lg font-semibold text-white">July 2021 - May 2023</p>
+            <p class="text-gray-300">Engineer-II</p>
+            <p class="text-sm text-gray-400 italic">Microchip Technology</p>
+            
+            <div class="relative w-full bg-gray-700 h-2 mt-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="bg-red-500 h-2 rounded w-[90%]"></div>
+                
+                <span class="absolute top-[-30px] left-[50%] transform -translate-x-[50%] bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    1 years, 10 months
+                </span>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+</section>
     <section class="p-10 text-center bg-black">
         <a href="resume.pdf" download class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full text-white font-semibold">Download Resume</a>
     </section>
 
-    
     <footer class="p-4 text-center bg-black border-t border-gray-800 text-gray-400">
         <p>&copy; 2025 Your Name | <a href="#" class="text-red-400">GitHub</a> | <a href="#" class="text-red-400">LinkedIn</a></p>
     </footer>
 
     <script>
-        
+      
         const backBtn = document.getElementById("backBtn");
     
         const modals = {
