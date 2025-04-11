@@ -2,324 +2,347 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AI-Powered Image Processing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap" as="style">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap');
 
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #141414; /* Deep Netflix black */
-    color: #e5e5e5;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #141414;
+            color: #e5e5e5;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-.container {
-    max-width: 900px;
-    margin: 50px auto;
-    background: rgba(20, 20, 20, 0.9); 
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-}
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
 
-/* Headings */
-h1, h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    color: #ffffff; /* Netflix Red */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-h1 {
-    font-size: 42px;
-}
+        h1, h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
 
-h2 {
-    font-size: 30px;
-}
+        h1 {
+            font-size: 42px;
+        }
 
-/* Text */
-p {
-    font-size: 18px;
-    line-height: 1.7;
-    color: #b3b3b3;
-}
+        h2 {
+            font-size: 30px;
+        }
 
-/* List */
-ul {
-    list-style: none;
-    padding: 0;
-}
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #b3b3b3;
+        }
 
-ul li {
-    font-size: 18px;
-    margin-bottom: 12px;
-    line-height: 1.6;
-    position: relative;
-    padding-left: 25px;
-}
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-ul li::before {
-    content: "▶";
-    color: #e50914;
-    font-size: 18px;
-    position: absolute;
-    left: 0;
-    top: 2px;
-}
+        ul li {
+            font-size: 18px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 25px;
+        }
 
-/* Highlight Box */
-.highlight {
-    background: rgba(229, 9, 20, 0.1);
-    padding: 18px;
-    border-left: 4px solid #e50914;
-    margin-bottom: 20px;
-    font-size: 18px;
-    border-radius: 6px;
-}
+        ul li::before {
+            content: "▶";
+            color: #e50914;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
 
-/* Netflix-Style Image Comparison - Optimized */
-.comparison-container {
-    position: relative;
-    display: inline-block; /* Shrinks container to fit the image */
-    max-width: 100%;
-    height: 420px;
-    overflow: hidden;
-    margin-top: 30px;
-    border-radius: 14px;
-    background: #111;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-}
+        .highlight {
+            background: rgba(229, 9, 20, 0.1);
+            padding: 18px;
+            border-left: 4px solid #e50914;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-radius: 6px;
+        }
 
-/* Subtle Cinematic Glow */
-.comparison-container::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
-    z-index: 1;
-    pointer-events: none;
-    border-radius: 14px;
-}
+        .comparison-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            max-height: 500px;
+            overflow: hidden;
+            margin-top: 30px;
+            border-radius: 12px;
+            background: #111;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            cursor: ew-resize;
+            touch-action: none;
+            
+        }
 
-/* Image Styling - Ensures No Extra Space */
-.comparison-container img {
-    display: block;
-    max-width: 100%;
-    height: 100%;
-    object-fit: contain; /* Keeps the full image visible */
-}
+        .comparison-container::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 12px;
+        }
 
-/* Improved Transition Sensitivity */
-.comparison-container .before,
-.comparison-container .after {
-    transition: opacity 0.15s ease-in-out; /* Faster and smoother */
-}
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
 
+        .image-wrapper img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.15s ease-out;
+            display: block;
+        }
 
-/* Netflix-Style Slider - Fully Hidden Until Hover */
-.slider {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 12px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;  /* Completely removes it from view */
-    pointer-events: none; /* Prevents accidental interaction when hidden */
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
+        .after {
+            opacity: 0;
+        }
 
-/* Show Slider on Hover Over Image Section */
-.comparison-container:hover .slider {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;  /* Allows interaction only when visible */
-}
+        .slider-bar {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateX(-50%);
+            transition: left 0.2s ease-out;
+            will-change: left;
+            z-index: 2;
+        }
 
-/* Slider Input */
-.slider input[type="range"] {
-    width: 100%;
-    height: 12px;
-    background: transparent;
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
-    border-radius: 6px;
-}
+        .compare-instruction {
+            font-size: 16px;
+            color: #b3b3b3;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-/* Thumb Styling */
-.slider input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 22px;
-    height: 22px;
-    background: #e50914;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
-    transition: background 0.2s, transform 0.2s ease-in-out;
-}
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-/* Hover Effect */
-.slider input[type="range"]::-webkit-slider-thumb:hover {
-    background: #ff0a16;
-    transform: scale(1.1);
-}
+        .btn:hover {
+            background: #ff0a16;
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.6);
+        }
 
+        .container a {
+            color: #e50914;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
+        .container a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
 
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
 
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background: #e50914;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.3s;
-}
+            h1 {
+                font-size: 36px;
+            }
 
-.btn:hover {
-    background: #ff0a16;
-    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.6);
-}
+            h2 {
+                font-size: 26px;
+            }
 
-/* Links */
-.container a {
-    color: #e50914;
-    text-decoration: none;
-    font-weight: 600;
-}
+            p, ul li, .highlight {
+                font-size: 16px;
+            }
 
-.container a:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-}
+            .slider-bar {
+                width: 2px;
+            }
+        }
 
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
 
+            h1 {
+                font-size: 30px;
+            }
 
+            h2 {
+                font-size: 22px;
+            }
+
+            p, ul li, .highlight {
+                font-size: 14px;
+            }
+
+            ul li {
+                margin-bottom: 10px;
+            }
+
+            .compare-instruction {
+                font-size: 14px;
+            }
+
+            .slider-bar {
+                width: 2px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>AI-Powered Image Processing</h1>
-        
+
         <h2>Overview</h2>
         <p>To enhance the visual quality of images across documentation, software tools, and the website, I led the development of an <strong>ML-based image enhancement product</strong>. This solution leveraged <strong>Convolutional Neural Networks (CNNs) and advanced denoising algorithms</strong>, achieving <strong>up to 50% improvement</strong> in image clarity.</p>
-        
+
         <h2>Approach</h2>
         <ul>
             <li>Designed a <strong>workflow</strong> to systematically <strong>assess all images</strong>, rating them on key quality parameters such as noise, resolution, and sharpness.</li>
             <li>Implemented an <strong>automated enhancement pipeline</strong> that selectively refined images failing the set threshold.</li>
             <li>Ensured seamless <strong>export of enhanced images</strong> for integration into various platforms.</li>
         </ul>
-        
+
         <h2>Impact</h2>
         <div class="highlight">
             <strong>Website & Documentation:</strong> Improved clarity and readability of images, enhancing user engagement.
         </div>
         <div class="highlight">
-             <strong>Software Tool Release:</strong> The refined images were deployed alongside a major <strong>legacy software update</strong>, replacing outdated icons and improving the <strong>user interface experience</strong>. Restoring legacy icons with no sources.
+            <strong>Software Tool Release:</strong> The refined images were deployed alongside a major <strong>legacy software update</strong>, replacing outdated icons and improving the <strong>user interface experience</strong>. Restoring legacy icons with no sources.
         </div>
         <div class="highlight">
             <strong>Automation Efficiency:</strong> Reduced manual effort in quality control, ensuring <strong>consistent visual standards</strong> across all assets.
         </div>
-        
-        <p>This AI-driven solution not only <strong>elevated product aesthetics</strong> but also <strong>streamlined image quality management</strong>, reinforcing guidelines around image quality</strong>.</p>
 
-      
-       
-        <h2>Before vs After <h4>(hover left to right)</h4> </h2>
-        
-<div class="comparison-container">
-    <div class="image-wrapper">
-        <img src="./before1.png" alt="Before Enhancement" class="before">
-        <img src="./after1.png" alt="After Enhancement" class="after">
+        <p>This AI-driven solution not only <strong>elevated product aesthetics</strong> but also <strong>streamlined image quality management</strong>, reinforcing guidelines around image quality.</p>
+
+        <h2>Before vs After</h2>
+        <p class="compare-instruction">Slide or tap to compare</p>
+        <div class="comparison-container" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Before and after image comparison slider">
+            <div class="image-wrapper">
+                <img src="./before1.png" alt="Before AI enhancement: blurry image" class="before" loading="lazy">
+                <img src="./after1.png" alt="After AI enhancement: clear image" class="after" loading="lazy">
+            </div>
+            <div class="slider-bar"></div>
+        </div>
     </div>
-    <div class="slider-bar"></div>
-</div>
 
-<style>
-    .comparison-container {
-        position: relative;
-        width: 100%;
-        height: 400px;
-        overflow: hidden;
-        border-radius: 10px;
-        background-color: #f9f9f9;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-        cursor: ew-resize;
-    }
+    <script>
+        // Debounce function to limit event frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
 
-    .image-wrapper {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
+        const container = document.querySelector('.comparison-container');
+        const beforeImage = document.querySelector('.before');
+        const afterImage = document.querySelector('.after');
+        const sliderBar = document.querySelector('.slider-bar');
 
-    .image-wrapper img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: opacity 0.2s ease-out;
-    }
+        function updateSlider(e, isTouch = false) {
+            const rect = container.getBoundingClientRect();
+            let offsetX;
 
-    .after {
-        opacity: 0; 
-    }
+            if (isTouch) {
+                offsetX = e.touches[0].clientX - rect.left;
+            } else {
+                offsetX = e.clientX - rect.left;
+            }
 
-    .slider-bar {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 3px;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        transform: translateX(-50%);
-        transition: left 0.2s ease-out;
-    }
-</style>
+            // Increase sensitivity: 2x faster transition
+            let percentage = Math.max(0, Math.min(1, (offsetX / rect.width) * 2));
 
-<script>
-    const container = document.querySelector('.comparison-container');
-    const beforeImage = document.querySelector('.before');
-    const afterImage = document.querySelector('.after');
-    const sliderBar = document.querySelector('.slider-bar');
+            beforeImage.style.opacity = 1 - percentage;
+            afterImage.style.opacity = percentage;
+            sliderBar.style.left = `${percentage * 100}%`;
 
-    container.addEventListener('mousemove', (e) => {
-        let rect = container.getBoundingClientRect();
-        let offsetX = e.clientX - rect.left;
-        let percentage = offsetX / rect.width;
+            // Update ARIA value
+            container.setAttribute('aria-valuenow', Math.round(percentage * 100));
+        }
 
-        beforeImage.style.opacity = 1 - percentage;
-        afterImage.style.opacity = percentage;
-        sliderBar.style.left = `${percentage * 100}%`;
-    });
-</script>
+        // Mouse events
+        container.addEventListener('mousemove', debounce(updateSlider, 16));
+        container.addEventListener('click', updateSlider);
 
-        
+        // Touch events
+        container.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent scroll/zoom
+            updateSlider(e, true);
+        });
+        container.addEventListener('touchmove', debounce((e) => {
+            e.preventDefault();
+            updateSlider(e, true);
+        }, 16));
+        container.addEventListener('touchend', () => {
+            container.style.touchAction = 'none'; // Keep disabled after touch
+        });
 
-        
-
-        
+        // Keyboard events
+        container.addEventListener('keydown', (e) => {
+            let percentage = parseFloat(sliderBar.style.left || '50') / 100;
+            if (e.key === 'ArrowLeft') {
+                percentage = Math.max(0, percentage - 0.05);
+            } else if (e.key === 'ArrowRight') {
+                percentage = Math.min(1, percentage + 0.05);
+            }
+            beforeImage.style.opacity = 1 - percentage;
+            afterImage.style.opacity = percentage;
+            sliderBar.style.left = `${percentage * 100}%`;
+            container.setAttribute('aria-valuenow', Math.round(percentage * 100));
+        });
+    </script>
 </body>
 </html>
