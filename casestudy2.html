@@ -99,7 +99,7 @@
 
     .feedback-tile-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Increased min width */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
       gap: 16px;
       margin-top: 25px;
       justify-content: center; /* Center tiles */
@@ -107,7 +107,7 @@
 
     /* Adjust for exactly 2 tiles */
     .feedback-tile-gallery:has(.feedback-tile:nth-child(2):last-child) {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider for 2 tiles */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
     .feedback-tile {
@@ -332,11 +332,11 @@
       }
 
       .feedback-tile-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min width */
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
       }
 
       .feedback-tile-gallery:has(.feedback-tile:nth-child(2):last-child) {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Wider for 2 tiles */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
       }
     }
 
@@ -371,11 +371,11 @@
       }
 
       .feedback-tile-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller for mobile */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
       }
 
       .feedback-tile-gallery:has(.feedback-tile:nth-child(2):last-child) {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Wider for 2 tiles */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
       }
     }
   </style>
@@ -396,7 +396,7 @@
 
     <h2>Technology and Impact</h2>
     <div class="highlight">
-      <strong>AI & Data Science:</strong> Leveraged LLMs, RAG, predictive analytics, data pipelines for smart and updated responses as per latest information.
+      <strong>AI & Data Science:</strong> Leveraged LLMs, RAG, predictive analytics, data pipelines for smart and updated responses as per the latest information.
     </div>
     <div class="highlight">
       <strong>Productivity:</strong> Achieved up to 50% boost in writing PRDs, code assist, specifications, test plans, and technical documentation.
@@ -410,11 +410,11 @@
 
     <div class="feedback-tile-gallery">
       <div class="feedback-tile">
-        <img src="./5.jpg" alt="Feedback 1" />
+        <img src="./images/5.jpg" alt="Feedback 1" />
         <span>Principal Engineer</span>
       </div>
       <div class="feedback-tile">
-        <img src="./4.jpg" alt="Feedback 2" />
+        <img src="./images/4.jpg" alt="Feedback 2" />
         <span>Senior Principal Engineer</span>
       </div>
     </div>
@@ -554,7 +554,6 @@
           const prevZoom = zoom;
           zoom = Math.min(maxZoom, Math.max(minZoom, zoom * zoomFactor));
 
-          // Zoom around touch midpoint
           const rect = canvas.getBoundingClientRect();
           const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
           const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
@@ -577,7 +576,6 @@
       lastTouchDistance = null;
     });
 
-    // Navigation
     prevBtn.addEventListener('click', () => {
       currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
       loadImage();
