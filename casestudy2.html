@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI-Powered Image Processing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap" as="style">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #141414;
+      color: #e5e5e5;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: rgba(20, 20, 20, 0.9);
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      box-sizing: border-box;
+      width: 100%;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #b3b3b3;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 18px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    ul li::before {
+      content: "▶";
+      color: #e50914;
+      font-size: 18px;
+      position: absolute;
+      left: 0;
+      top: 2px;
+    }
+
+    .highlight {
+      background: rgba(229, 9, 20, 0.1);
+      padding: 18px;
+      border-left: 4px solid #e50914;
+      margin-bottom: 20px;
+      font-size: 18px;
+      border-radius: 6px;
+    }
+
+    .compare-instruction {
+      font-size: 16px;
+      color: #b3b3b3;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .feedback-tile-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Increased min width */
+      gap: 16px;
+      margin-top: 25px;
+      justify-content: center; /* Center tiles */
+    }
+
+    /* Adjust for exactly 2 tiles */
+    .feedback-tile-gallery:has(.feedback-tile:nth-child(2):last-child) {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Wider for 2 tiles */
+    }
+
+    .feedback-tile {
+      position: relative;
+      width: 100%;
+      height: 180px; /* Fixed height, content scales */
+      border-radius: 8px;
+      background: rgba(50, 50, 50, 0.9);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .feedback-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      will-change: transform, box-shadow, opacity;
+    }
+
+    .feedback-tile:hover img {
+      transform: scale(1.3) translateY(-10px);
+      opacity: 1;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 10px rgba(229, 9, 20, 0.3);
+    }
+
+    .feedback-tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(229, 9, 20, 0.5) 50%, rgba(255, 255, 255, 0.2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 4s infinite linear;
+      border-radius: 8px;
+      z-index: 1;
+    }
+
+    .feedback-tile::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      animation: pulseGlow 6s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    .feedback-tile:hover::before,
+    .feedback-tile:hover::after {
+      display: none;
+    }
+
+    .feedback-tile span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); }
+      50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+    }
+
+    #fullscreenModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    #fullscreenModal.active {
+      display: flex;
+    }
+
+    #imageCanvas {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      cursor: move;
+      touch-action: none;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, #e50914, #b20710);
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-50%) scale(1.1);
+      background: linear-gradient(135deg, #ff0a16, #c20712);
+    }
+
+    .prev-btn {
+      left: 20px;
+    }
+
+    .next-btn {
+      right: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #e50914, #b20710);
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #ff0a16, #c20712);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 26px;
+      }
+
+      p, ul li, .highlight {
+        font-size: 16px;
+      }
+
+      .feedback-tile span {
+        font-size: 14px;
+      }
+
+      .nav-btn {
+        padding: 10px;
+        font-size: 18px;
+        width: 36px;
+        height: 36px;
+      }
+
+      .close-btn {
+        padding: 8px;
+        font-size: 16px;
+        width: 32px;
+        height: 32px;
+      }
+
+      .prev-btn {
+        left: 10px;
+      }
+
+      .next-btn {
+        right: 10px;
+      }
+
+      #imageCanvas {
+        max-width: 95vw;
+        max-height: 85vh;
+      }
+
+      .feedback-tile-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min width */
+      }
+
+      .feedback-tile-gallery:has(.feedback-tile:nth-child(2):last-child) {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Wider for 2 tiles */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      p, ul li, .highlight {
+        font-size: 14px;
+      }
+
+      .compare-instruction {
+        font-size: 14px;
+      }
+
+      .feedback-tile span {
+        font-size: 12px;
+      }
+
+      #imageCanvas {
+        max-width: 95vw;
+        max-height: 85vh;
+      }
+
+      .feedback-tile-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller for mobile */
+      }
+
+      .feedback-tile-gallery:has(.feedback-tile:nth-child(2):last-child) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Wider for 2 tiles */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Recommendation Engine</h1>
+
+    <h2>Overview</h2>
+    <p>To improve visual quality and enhance documentation clarity, I built an <strong>AI-driven recommendation engine</strong> that assists with PRDs, test plans, ticket resolutions, and content strategy. It leverages <strong>LLMs, RAG pipelines</strong>, and <strong>context-driven prompting</strong> to deliver actionable guidance, improving the overall documentation lifecycle and readability.</p>
+
+    <h2>Key Features</h2>
+    <ul>
+      <li>Creates detailed <strong>PRDs, specifications, test reports</strong>, and internal documentation drafts.</li>
+      <li>Automatically suggests <strong>clear and contextual ticket resolutions</strong> with minimal input.</li>
+      <li>Seamlessly integrates recommendations and content with internal publishing tools.</li>
+    </ul>
+
+    <h2>Technology and Impact</h2>
+    <div class="highlight">
+      <strong>AI & Data Science:</strong> Leveraged LLMs, RAG, predictive analytics, data pipelines for smart and updated responses as per latest information.
+    </div>
+    <div class="highlight">
+      <strong>Productivity:</strong> Achieved up to 50% boost in writing PRDs, code assist, specifications, test plans, and technical documentation.
+    </div>
+    <div class="highlight">
+      <strong>Security:</strong> Fully local deployment — ensuring no external API or cloud-based interaction.
+    </div>
+
+    <h2>User Feedback</h2>
+    <p class="compare-instruction">Here's what users had to say after using the AI recommendation engine:</p>
+
+    <div class="feedback-tile-gallery">
+      <div class="feedback-tile">
+        <img src="./5.jpg" alt="Feedback 1" />
+        <span>Principal Engineer</span>
+      </div>
+      <div class="feedback-tile">
+        <img src="./4.jpg" alt="Feedback 2" />
+        <span>Senior Principal Engineer</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="fullscreenModal" aria-modal="true" role="dialog">
+    <canvas id="imageCanvas"></canvas>
+    <button class="nav-btn prev-btn" aria-label="Previous image">←</button>
+    <button class="nav-btn next-btn" aria-label="Next image">→</button>
+    <button class="close-btn" aria-label="Close viewer">✕</button>
+  </div>
+
+  <script>
+    const tiles = document.querySelectorAll('.feedback-tile');
+    const modal = document.getElementById('fullscreenModal');
+    const canvas = document.getElementById('imageCanvas');
+    const ctx = canvas.getContext('2d');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const imageSources = ['./5.jpg', './4.jpg'];
+    let currentImageIndex = 0;
+    let image = new Image();
+    let zoom = 1;
+    let minZoom = 1;
+    let maxZoom = 4;
+    let offsetX = 0;
+    let offsetY = 0;
+    let isDragging = false;
+    let startX, startY;
+    let lastTouchDistance = null;
+
+    function resizeCanvas() {
+      canvas.width = Math.min(window.innerWidth * 0.9, 1200);
+      canvas.height = Math.min(window.innerHeight * 0.9, 800);
+      drawImage();
+    }
+
+    function drawImage() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.imageSmoothingEnabled = true;
+      const imgWidth = image.width * zoom;
+      const imgHeight = image.height * zoom;
+      const drawX = offsetX + (canvas.width - imgWidth) / 2;
+      const drawY = offsetY + (canvas.height - imgHeight) / 2;
+      ctx.drawImage(image, drawX, drawY, imgWidth, imgHeight);
+    }
+
+    function loadImage() {
+      image.src = imageSources[currentImageIndex];
+      image.onload = () => {
+        zoom = 1;
+        offsetX = 0;
+        offsetY = 0;
+        drawImage();
+      };
+    }
+
+    tiles.forEach((tile, index) => {
+      tile.addEventListener('click', () => {
+        currentImageIndex = index;
+        modal.classList.add('active');
+        loadImage();
+        resizeCanvas();
+      });
+    });
+
+    // Mouse events
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+      const prevZoom = zoom;
+      zoom = Math.min(maxZoom, Math.max(minZoom, zoom * zoomFactor));
+
+      // Zoom around mouse position
+      const imgWidth = image.width * prevZoom;
+      const imgHeight = image.height * prevZoom;
+      const drawX = offsetX + (canvas.width - imgWidth) / 2;
+      const drawY = offsetY + (canvas.height - imgHeight) / 2;
+      const mouseImgX = (mouseX - drawX) / prevZoom;
+      const mouseImgY = (mouseY - drawY) / prevZoom;
+      offsetX -= mouseImgX * (zoom - prevZoom);
+      offsetY -= mouseImgY * (zoom - prevZoom);
+
+      drawImage();
+    });
+
+    // Hover-based panning
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const xPercent = mouseX / canvas.width; // 0 to 1
+      const yPercent = mouseY / canvas.height;
+      const imgWidth = image.width * zoom;
+      const imgHeight = image.height * zoom;
+      const maxOffsetX = Math.max(0, (imgWidth - canvas.width) / 2);
+      const maxOffsetY = Math.max(0, (imgHeight - canvas.height) / 2);
+      const sensitivity = 2;
+      offsetX = (0.5 - xPercent) * maxOffsetX * sensitivity;
+      offsetY = (0.5 - yPercent) * maxOffsetY * sensitivity;
+      // Clamp offsets
+      offsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, offsetX));
+      offsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, offsetY));
+      drawImage();
+    });
+
+    // Touch events
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX - offsetX;
+        startY = e.touches[0].clientY - offsetY;
+      } else if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        lastTouchDistance = Math.sqrt(dx * dx + dy * dy);
+      }
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (e.touches.length === 1 && isDragging) {
+        offsetX = e.touches[0].clientX - startX;
+        offsetY = e.touches[0].clientY - startY;
+        drawImage();
+      } else if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (lastTouchDistance) {
+          const zoomFactor = distance / lastTouchDistance;
+          const prevZoom = zoom;
+          zoom = Math.min(maxZoom, Math.max(minZoom, zoom * zoomFactor));
+
+          // Zoom around touch midpoint
+          const rect = canvas.getBoundingClientRect();
+          const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+          const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+          const imgWidth = image.width * prevZoom;
+          const imgHeight = image.height * prevZoom;
+          const drawX = offsetX + (canvas.width - imgWidth) / 2;
+          const drawY = offsetY + (canvas.height - imgHeight) / 2;
+          const midImgX = (midX - drawX) / prevZoom;
+          const midImgY = (midY - drawY) / prevZoom;
+          offsetX -= midImgX * (zoom - prevZoom);
+          offsetY -= midImgY * (zoom - prevZoom);
+        }
+        lastTouchDistance = distance;
+        drawImage();
+      }
+    });
+
+    canvas.addEventListener('touchend', () => {
+      isDragging = false;
+      lastTouchDistance = null;
+    });
+
+    // Navigation
+    prevBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+      loadImage();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentImageIndex = (currentImageIndex + 1) % imageSources.length;
+      loadImage();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('resize', resizeCanvas);
+  </script>
+</body>
+</html>
